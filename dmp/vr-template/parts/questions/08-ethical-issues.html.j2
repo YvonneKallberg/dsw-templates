@@ -100,7 +100,20 @@
           We will collect consent for our use of the data, and will anonymize the data afterwards for reuse.
         {%- endif -%}
       {%- endif -%}
+
       </p>
     {%- endif -%}
+
+    {%- set nagoyaPath = [uuids.legalEthicalCUuid, uuids.nagoyaQUuid]|reply_path -%}
+    {%- set needNagoyaAUuid = repliesMap[nagoyaPath]|reply_str_value -%}
+    {%- if needNagoyaAUuid == uuids.nagoyaYesAUuid -%}
+      {%- set needNagoyaYes = repliesMap[[nagoyaPath,uuids.nagoyaYesAUuid,uuids.nagoyaYesQUuid]|reply_path]|reply_str_value -%}
+      {%- if needNagoyaYes -%}
+        <p>
+          The Nagoya protocol needs to be considered in our project: {{ needNagoyaYes|dot }}
+        </p>
+      {%- endif -%}
+    {%- endif -%}
+
   </div>
 </div>
